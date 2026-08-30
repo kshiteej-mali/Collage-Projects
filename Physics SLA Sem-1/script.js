@@ -167,7 +167,7 @@ function initVernier() {
     update();
   });
   errorInput.addEventListener('input', () => {
-    activeTrigger = 'error';
+    if (!activeTrigger) activeTrigger = 'slider';
     update();
   });
   msrInput.addEventListener('input', () => {
