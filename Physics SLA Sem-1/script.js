@@ -12,6 +12,25 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // Handle home page navigation card clicks
+  document.querySelectorAll('.card-nav').forEach(card => {
+    card.addEventListener('click', () => {
+      const target = card.dataset.target;
+      const navBtn = document.querySelector(`.nav-btn[data-target="${target}"]`);
+      if (navBtn) navBtn.click();
+    });
+  });
+
+  // Logo redirects to home
+  const logo = document.querySelector('.logo');
+  if (logo) {
+    logo.style.cursor = 'pointer';
+    logo.addEventListener('click', () => {
+      const homeBtn = document.querySelector('.nav-btn[data-target="home"]');
+      if (homeBtn) homeBtn.click();
+    });
+  }
+
   initVernier();
   initScrew();
   initSpherometer();

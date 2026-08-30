@@ -369,3 +369,108 @@ table.iks-table th {
   color: #0b020c;
   box-shadow: 0 0 15px rgba(220, 163, 52, 0.4);
 }
+
+/* Home Section Styles */
+.home-hero {
+  text-align: center;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 3rem 1rem;
+}
+
+.hero-title {
+  font-family: 'Cinzel', serif;
+  font-size: 5rem;
+  margin-bottom: 0.5rem;
+  color: var(--text-main);
+  letter-spacing: 2px;
+}
+
+.hero-caret {
+  display: inline-block;
+  color: var(--accent);
+  font-size: 6rem;
+  animation: heroFloat 3s ease-in-out infinite;
+  text-shadow: 0 0 20px rgba(229, 184, 66, 0.4);
+}
+
+@keyframes heroFloat {
+  0% { transform: translateY(0px) scale(1); }
+  50% { transform: translateY(-15px) scale(1.05); text-shadow: 0 0 35px rgba(229, 184, 66, 0.8); }
+  100% { transform: translateY(0px) scale(1); }
+}
+
+.hero-subtitle {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.5rem;
+  color: var(--text-muted);
+  margin-bottom: 2rem;
+  font-weight: 300;
+  letter-spacing: 1px;
+}
+
+.kinetic-graphic {
+  margin: 1.5rem auto 3rem auto;
+  max-width: 400px;
+}
+
+.kinetic-svg {
+  width: 100%;
+}
+
+.cog-group {
+  transform-origin: 200px 75px;
+  animation: cogRotate 20s linear infinite;
+}
+
+@keyframes cogRotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.pulse-circle {
+  transform-origin: 200px 75px;
+  animation: pulseAnim 2s infinite ease-out;
+}
+
+@keyframes pulseAnim {
+  0% { transform: scale(0.6); opacity: 1; }
+  100% { transform: scale(1.6); opacity: 0; }
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.card-nav {
+  background: #16051a;
+  border: 1px solid var(--panel-border);
+  padding: 1.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  text-align: left;
+}
+
+.card-nav:hover {
+  border-color: var(--accent);
+  background: #25092a;
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(157, 43, 139, 0.15);
+}
+
+.card-nav h3 {
+  font-family: 'Cinzel', serif;
+  color: var(--accent);
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+}
+
+.card-nav p {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.4;
+}
