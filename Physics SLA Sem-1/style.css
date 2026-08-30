@@ -1,3 +1,4 @@
+/* Copyright (c) 2026 Avani Shastri, Siya Kale, Taal Patil, Mrunmayee Kulkarni, Kashish, Kshiteej Mali. All rights reserved. */
 :root {
   --bg: #0b020c;
   --panel-bg: #1a051d;
@@ -370,7 +371,7 @@ table.iks-table th {
   box-shadow: 0 0 15px rgba(220, 163, 52, 0.4);
 }
 
-/* Home Section Styles */
+
 .home-hero {
   text-align: center;
   max-width: 1000px;
