@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My First HTML Practice Page</title>
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header>
+        <h1>Welcome to My Practice Website</h1>
+        <p>This is my first HTML page for my web development practical assignment.</p>
+    </header>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <p>
+            <a href="#about">About Me</a> | 
+            <a href="#hobbies">My Hobbies</a> | 
+            <a href="#timetable">Class Schedule</a> | 
+            <a href="#contact">Contact Me</a>
+        </p>
+    </nav>
+
+    <hr>
+
+    <!-- Main Content Area -->
+    <main>
+
+        <!-- Headings Demonstration Section -->
+        <section>
+            <!-- All 6 heading levels -->
+            <h1>Heading Level 1 - Main Title</h1>
+            <h2>Heading Level 2 - Section Heading</h2>
+            <h3>Heading Level 3 - Sub Section</h3>
+            <h4>Heading Level 4 - Minor Heading</h4>
+            <h5>Heading Level 5 - Small Heading</h5>
+            <h6>Heading Level 6 - Smallest Heading</h6>
+        </section>
+
+        <hr>
+
+        <!-- About Me Section with Text Formatting Tags -->
+        <section id="about">
+            <h2>About Me</h2>
+            <p>
+                Hello! My name is John, and I am a <b>first-year student</b> learning HTML.<br>
+                I really <strong>enjoy</strong> building simple web pages from scratch.
+            </p>
+            <p>
+                Here is some formatted text to practice basic HTML tags:
+            </p>
+            <p>
+                This text is <i>italicized</i>, while this word has <em>emphasis</em>.<br>
+                I can also make text <u>underlined</u> or <mark>highlighted with yellow</mark>.<br>
+                We can write <small>small side notes</small> too!
+            </p>
+            <p>
+                Math formula: (a + b)<sup>2</sup> = a<sup>2</sup> + 2ab + b<sup>2</sup><br>
+                Chemistry formula: Water is H<sub>2</sub>O and Glucose is C<sub>6</sub>H<sub>12</sub>O<sub>6</sub>.
+            </p>
+            <!-- Single placeholder image -->
+            <img src="https://via.placeholder.com/300x150" alt="Placeholder image of my study desk" width="300" height="150">
+        </section>
+
+        <hr>
+
+        <!-- Hobbies & Lists Section -->
+        <section id="hobbies">
+            <h2>My Lists</h2>
+
+            <article>
+                <h3>My Favorite Hobbies (Unordered List)</h3>
+                <ul>
+                    <li>Playing cricket</li>
+                    <li>Listening to music</li>
+                    <li>Reading tech blogs</li>
+                    <li>Video editing</li>
+                </ul>
+            </article>
+
+            <article>
+                <h3>Daily Morning Routine (Ordered List)</h3>
+                <ol>
+                    <li>Wake up early at 6:30 AM</li>
+                    <li>Go for a morning walk</li>
+                    <li>Have a healthy breakfast</li>
+                    <li>Attend morning college lectures</li>
+                </ol>
+            </article>
+        </section>
+
+        <hr>
+
+        <!-- Timetable Table Section -->
+        <section id="timetable">
+            <h2>My Weekly Class Schedule</h2>
+            <!-- Table with border and 4 rows -->
+            <table border="1">
+                <tr>
+                    <th>Day</th>
+                    <th>Subject</th>
+                    <th>Time</th>
+                    <th>Room</th>
+                </tr>
+                <tr>
+                    <td>Monday</td>
+                    <td>Web Development Lab</td>
+                    <td>10:00 AM - 12:00 PM</td>
+                    <td>Lab 3</td>
+                </tr>
+                <tr>
+                    <td>Wednesday</td>
+                    <td>Computer Networks</td>
+                    <td>01:00 PM - 02:30 PM</td>
+                    <td>Room 204</td>
+                </tr>
+                <tr>
+                    <td>Friday</td>
+                    <td>Database Systems</td>
+                    <td>11:00 AM - 12:30 PM</td>
+                    <td>Lab 1</td>
+                </tr>
+            </table>
+        </section>
+
+        <hr>
+
+        <!-- Aside Section for Extra Notes -->
+        <aside>
+            <h3>Quick Note</h3>
+            <p>Remember to submit the practical journal before Friday evening!</p>
+        </aside>
+
+        <hr>
+
+        <!-- Contact Form Section -->
+        <section id="contact">
+            <h2>Contact Form</h2>
+            <p>Feel free to send me a message:</p>
+
+            <form action="#" method="post">
+                <p>
+                    <label for="student-name">Your Full Name:</label><br>
+                    <input type="text" id="student-name" name="student-name">
+                </p>
+
+                <p>
+                    <label for="student-email">Email Address:</label><br>
+                    <input type="email" id="student-email" name="student-email">
+                </p>
+
+                <p>
+                    <label for="course-select">Select Course:</label><br>
+                    <select id="course-select" name="course-select">
+                        <option value="cs">Computer Science</option>
+                        <option value="it">Information Technology</option>
+                        <option value="extc">Electronics</option>
+                        <option value="other">Other</option>
+                    </select>
+                </p>
+
+                <p>
+                    <label for="message">Your Message / Feedback:</label><br>
+                    <textarea id="message" name="message" rows="4" cols="40"></textarea>
+                </p>
+
+                <p>
+                    <button type="submit">Submit Form</button>
+                    <button type="reset">Clear Form</button>
+                </p>
+            </form>
+        </section>
+
+    </main>
+
+    <hr>
+
+    <!-- Footer Section -->
+    <footer>
+        <p>&copy; 2026 Student Web Practical Assignment. All rights reserved.</p>
+        <p>Created for HTML learning practice.</p>
+    </footer>
+
+</body>
+</html>
