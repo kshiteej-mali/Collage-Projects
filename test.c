@@ -8,4 +8,6 @@ int main() {
     int b = 20;
     double sum = a + b + c;
     printf("Sum=%lf \n",sum);
+    double diff = c- b - a;
+    printf("Difference=%lf \n",diff);
 }
