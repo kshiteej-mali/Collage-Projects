@@ -1,3 +1,4 @@
+// changes to be added - subtraction of two numbers
 #include <stdio.h>
 
 int main() {
@@ -6,5 +7,5 @@ int main() {
     int c = 100;
     int b = 20;
     double sum = a + b + c;
-    printf("Sum=%lf",sum);
+    printf("Sum=%lf \n",sum);
 }
