@@ -37,7 +37,7 @@ export function GridCanvas({ paused }: { paused: boolean }) {
     let height = 0;
     let cols = 0;
     let rows = 0;
-    const CELL_SIZE = 16;
+    const CELL_SIZE = 22;
     let grid: Cell[][] = [];
     let animationFrameId: number;
     let time = 0;
@@ -284,7 +284,7 @@ export function GridCanvas({ paused }: { paused: boolean }) {
       ctx.fillStyle = '#080808';
       ctx.fillRect(0, 0, width, height);
 
-      ctx.font = '12px monospace';
+      ctx.font = 'bold 15px ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace';
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
 
