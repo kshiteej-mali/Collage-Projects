@@ -1,5 +1,4 @@
 
-// --- Split-Flap Text Component (ReactBits Style Solari Board) ---
 class SplitFlapText {
   constructor(container, options = {}) {
     this.container = container;
@@ -89,7 +88,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Smooth Morphing Section Transitions
   function navigateToSection(targetId) {
     if (isNavigating) return;
     const currentActive = document.querySelector('.section.active');
@@ -158,9 +156,8 @@ document.addEventListener('DOMContentLoaded', () => {
   setTimeout(triggerMathRender, 300);
   setTimeout(triggerMathRender, 800);
 });
-// --- Vernier Caliper Metrology & Simulation Backend Engine ---
 const VernierEngine = {
-  LEAST_COUNT_MM: 0.1, // 1 MSD (1 mm) - 1 VSD (0.9 mm) = 0.1 mm
+  LEAST_COUNT_MM: 0.1,
 
   calculate(msr, vsd, zeroError = 0, leastCount = 0.1) {
     const validMSR = Math.max(0, Math.floor(Number(msr) || 0));
@@ -212,7 +209,6 @@ function initVernier() {
   const caliperAssembly = document.getElementById('caliper-assembly');
   const depthBeaker = document.getElementById('depth-beaker');
   
-  // Controls
   const valInput = document.getElementById('vernier-val');
   const errorInput = document.getElementById('vernier-error');
   const msrInput = document.getElementById('vernier-msr-input');
@@ -223,7 +219,6 @@ function initVernier() {
   const calcBtn = document.getElementById('vernier-calc-btn');
   const resetBtn = document.getElementById('vernier-reset-btn');
 
-  // Readouts
   const msrSpan = document.getElementById('vernier-msr');
   const vsdDisplay = document.getElementById('vernier-vsd-display');
   const vsrSpan = document.getElementById('vernier-vsr');
@@ -236,7 +231,6 @@ function initVernier() {
   const vernierFlapEl = document.getElementById('vernier-corrected-flap');
   const vernierFlap = vernierFlapEl ? new SplitFlapText(vernierFlapEl) : null;
 
-  // Generate Main Scale ticks: 0 to 50 mm (5 cm)
   mainTicksContainer.innerHTML = '';
   for (let i = 0; i <= 60; i++) {
     const x = 150 + i * 10;
@@ -258,12 +252,11 @@ function initVernier() {
       text.setAttribute('fill', '#1c1c1e');
       text.setAttribute('font-size', '11');
       text.setAttribute('text-anchor', 'middle');
-      text.textContent = i / 10; // in cm markings (0, 1, 2, 3...)
+      text.textContent = i / 10;
       mainTicksContainer.appendChild(text);
     }
   }
 
-  // Generate Vernier Scale ticks: 10 divisions = 9 mm (each division = 0.9 mm = 9 SVG units)
   vernierTicksContainer.innerHTML = '';
   for (let i = 0; i <= 10; i++) {
     const x = 150 + i * 9;
@@ -313,20 +306,14 @@ function initVernier() {
       vsdInput.value = vsd;
     }
 
-    // Physical SVG translation:
-    // The entire slider assembly (sliding jaw, depth blade, vernier plate, and vernier ticks)
-    // moves as one rigid physical unit along the main scale.
-    // Slider position reflects the observed scale reading (rawVal + zeroError).
     const sliderPosMm = (activeTrigger === 'inputs')
       ? (msr + vsd * VernierEngine.LEAST_COUNT_MM)
       : (rawVal + zeroError);
     slider.setAttribute('transform', `translate(${sliderPosMm * 10}, 0)`);
     vernierTicksContainer.removeAttribute('transform');
 
-    // Backend calculation via VernierEngine
     const result = VernierEngine.calculate(msr, vsd, zeroError, VernierEngine.LEAST_COUNT_MM);
 
-    // Update frontend readouts in minimalist format
     msrSpan.textContent = `${result.msr.toFixed(1)} mm`;
     if (vsdDisplay) vsdDisplay.textContent = `${result.vsd}`;
     vsrSpan.textContent = `${result.vsr.toFixed(2)} mm`;
@@ -337,12 +324,10 @@ function initVernier() {
     }
     correctedSpan.textContent = `${result.corrected.toFixed(2)} mm`;
 
-    // Split-Flap animated output
     if (vernierFlap) {
       vernierFlap.setText(`${result.corrected.toFixed(1)} mm`);
     }
 
-    // Check match for test objects
     let isMatch = false;
     let expectedDim = null;
     if (activeObj === 'cylOut') expectedDim = 24.0;
@@ -357,7 +342,7 @@ function initVernier() {
         isMatch = true;
       }
     } else {
-      isMatch = true; // freely measured reading is true to jaw opening
+      isMatch = true;
     }
 
     if (truthBadge) {
@@ -385,7 +370,6 @@ function initVernier() {
     }
   }
 
-  // Event Listeners for Controls
   valInput.addEventListener('input', () => {
     activeTrigger = 'slider';
     update();
@@ -449,7 +433,6 @@ function initVernier() {
     });
   }
 
-  // --- Zoom & Pan Logic ---
   let mode = 'jaw';
   let zoomLevel = 1.0;
   const vernierViewport = document.getElementById('vernier-viewport');
@@ -467,7 +450,6 @@ function initVernier() {
     if (mode === 'jaw') {
       vernierViewport.style.transform = `scale(${scale}) translate(${px}px, ${py}px)`;
     } else {
-      // Depth mode: scale down smoothly to fit vertical caliper & beaker, centered at (400, 120)
       const depthFitScale = scale * 0.48;
       vernierViewport.style.transform = `scale(${depthFitScale}) translate(${px}px, ${-90 + py}px)`;
     }
@@ -508,7 +490,6 @@ function initVernier() {
     svg.style.cursor = 'grab';
   }
 
-  // --- Smooth Calibrated Drag System ---
   let isDraggingSlider = false;
   let dragStartClientX = 0;
   let dragStartVal = 0;
@@ -527,18 +508,17 @@ function initVernier() {
     if (!isDraggingSlider) return;
     const sensitivity = sensitivitySelect ? parseFloat(sensitivitySelect.value) || 1.0 : 1.0;
     
-    // Convert screen pixel delta to mm using SVG scaling and user sensitivity
     const svgRect = svg.getBoundingClientRect();
-    const svgViewWidth = 900; // viewBox width: 900
+    const svgViewWidth = 900;
     const currentScale = (mode === 'depth' ? (1 / zoomLevel) * 0.48 : (1 / zoomLevel));
     const pixelsPerSvgUnit = (svgRect.width / svgViewWidth) * currentScale;
-    const pixelsPerMm = pixelsPerSvgUnit * 10; // 10 SVG units = 1 mm
+    const pixelsPerMm = pixelsPerSvgUnit * 10;
 
     const deltaPixels = clientX - dragStartClientX;
     const deltaMm = (deltaPixels / (pixelsPerMm || 10)) * sensitivity;
 
     let newVal = Math.max(0, Math.min(60, dragStartVal + deltaMm));
-    newVal = Math.round(newVal * 10) / 10; // snap to 0.1 mm least count
+    newVal = Math.round(newVal * 10) / 10;
     valInput.value = newVal;
     update();
   }
@@ -601,7 +581,6 @@ function initVernier() {
     endPan();
   });
 
-  // Mode controller with pure in-place rotation
   function setMode(newMode) {
     if (mode === newMode) return;
     mode = newMode;
@@ -611,7 +590,6 @@ function initVernier() {
 
     if (mode === 'depth') {
       modeBtn.textContent = 'Flip to Jaw Mode';
-      // Rotate 90deg strictly in-place around center (400, 120)
       caliperAssembly.style.transform = 'rotate(90deg)';
       if (activeObj !== 'depthJar') {
         depthBeaker.style.opacity = '0';
@@ -626,7 +604,6 @@ function initVernier() {
     applyZoom();
   }
 
-  // Mode button toggle (Jaw vs Depth)
   modeBtn.addEventListener('click', () => {
     if (mode === 'jaw') {
       setMode('depth');
@@ -641,7 +618,6 @@ function initVernier() {
     }
   });
 
-  // Test objects tray
   const objBtns = {
     none: document.getElementById('obj-none-btn'),
     cylOut: document.getElementById('obj-cyl-out-btn'),
@@ -664,7 +640,6 @@ function initVernier() {
     activeObj = objKey;
 
     if (objKey === 'depthJar') {
-      // Depth Jar is measured in Depth Mode!
       if (mode !== 'depth') {
         setMode('depth');
       }
@@ -672,7 +647,6 @@ function initVernier() {
       setTimeout(() => {
         depthBeaker.style.opacity = '1';
       }, 50);
-      // Hide jaw objects
       Object.keys(svgObjs).forEach(k => { if (svgObjs[k]) svgObjs[k].style.display = 'none'; });
     } else {
       depthBeaker.style.opacity = '0';
@@ -680,12 +654,10 @@ function initVernier() {
         if (activeObj !== 'depthJar') depthBeaker.style.display = 'none';
       }, 300);
 
-      // Jaw objects are measured in Jaw Mode!
       if (objKey !== 'none' && mode === 'depth') {
         setMode('jaw');
       }
 
-      // Show selected jaw object (clamped between jaws)
       Object.keys(svgObjs).forEach(key => {
         if (svgObjs[key]) svgObjs[key].style.display = (key === objKey) ? 'block' : 'none';
       });
@@ -706,7 +678,6 @@ function initVernier() {
   if (objBtns.sq) objBtns.sq.addEventListener('click', () => selectObject('sq', 30.0, 'Target width: 30.0 mm. Jaws aligned to measure the acrylic block.'));
   if (objBtns.depthJar) objBtns.depthJar.addEventListener('click', () => selectObject('depthJar', 28.0, 'Target depth: 28.0 mm. Thin depth probe rod inserted to measure beaker liquid depth.'));
 
-  // --- Interactive Test & Verification Suite Runner ---
   const testTbody = document.getElementById('vernier-test-tbody');
   const runSuiteBtn = document.getElementById('vernier-run-suite-btn');
 
@@ -780,7 +751,6 @@ function initVernier() {
     }
   }
 
-  // Developer Test Runner (Minimalist / headless for testing)
   if (testTbody) {
     renderSuiteTable();
   }
@@ -1237,10 +1207,10 @@ function initBeamsBackground() {
       float t = uTime * 0.35;
       float beamField = 0.0;
       
-      vec3 beamColor1 = vec3(0.137, 0.392, 0.667); // #2364AA Ocean Deep
-      vec3 beamColor2 = vec3(0.239, 0.647, 0.851); // #3DA5D9 Fresh Sky
-      vec3 beamColor3 = vec3(0.451, 0.749, 0.722); // #73BFB8 Tropical Teal
-      vec3 beamColor4 = vec3(0.996, 0.776, 0.004); // #FEC601 School Bus Yellow
+      vec3 beamColor1 = vec3(0.137, 0.392, 0.667);
+      vec3 beamColor2 = vec3(0.239, 0.647, 0.851);
+      vec3 beamColor3 = vec3(0.451, 0.749, 0.722);
+      vec3 beamColor4 = vec3(0.996, 0.776, 0.004);
       
       for (float i = 0.0; i < 12.0; i += 1.0) {
         float xOffset = (i - 5.5) * 0.28;
